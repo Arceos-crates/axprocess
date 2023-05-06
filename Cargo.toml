@@ -1,58 +1,17 @@
-[workspace]
+[package]
+name = "axprocess"
+version = "0.1.0"
+edition = "2021"
+authors = ["Youjie Zheng <zyj578335934@gmail.com>"]
 
-members = [
-    "apps/display",
-    "apps/exception",
-    "apps/helloworld",
-    "apps/memtest",
-    "apps/fs/shell",
-    "apps/net/echoserver",
-    "apps/net/httpclient",
-    "apps/net/httpserver",
-    "apps/task/parallel",
-    "apps/task/sleep",
-    "apps/task/yield",
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-    "crates/allocator",
-    "crates/arm_gic",
-    "crates/axerrno",
-    "crates/axfs_devfs",
-    "crates/axfs_vfs",
-    "crates/axio",
-    "crates/capability",
-    "crates/crate_interface",
-    "crates/driver_block",
-    "crates/driver_common",
-    "crates/driver_display",
-    "crates/driver_net",
-    "crates/driver_virtio",
-    "crates/handler_table",
-    "crates/lazy_init",
-    "crates/linked_list",
-    "crates/memory_addr",
-    "crates/page_table",
-    "crates/page_table_entry",
-    "crates/percpu",
-    "crates/percpu_macros",
-    "crates/ratio",
-    "crates/scheduler",
-    "crates/slab_allocator",
-    "crates/spinlock",
-    "crates/timer_list",
-    "crates/tuple_for_each",
-
-    "modules/axalloc",
-    "modules/axconfig",
-    "modules/axdisplay",
-    "modules/axdriver",
-    "modules/axfs",
-    "modules/axhal",
-    "modules/axlog",
-    "modules/axnet",
-    "modules/axruntime",
-    "modules/axsync",
-    "modules/axtask",
-
-    "ulib/libax",
-    "ulib/c_libax/libax_bindings",
-]
+[dependencies]
+spinlock = { path = "../../crates/spinlock" }
+axtask = { path = "../axtask" }
+axhal = { path = "../axhal" }
+axlog = { path = "../axlog" }
+axmem = { path = "../axmem" }
+axfs_os = { path = "../axfs_os" }
+riscv = "0.10"
+bitflags = "= 2.1.0"
