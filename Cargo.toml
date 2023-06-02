@@ -1,63 +1,31 @@
-[workspace]
+[package]
+name = "axprocess"
+version = "0.1.0"
+edition = "2021"
+authors = ["Youjie Zheng <zyj578335934@gmail.com>"]
 
-members = [
-    "apps/display",
-    "apps/exception",
-    "apps/helloworld",
-    "apps/memtest",
-    "apps/fs/shell",
-    "apps/net/echoserver",
-    "apps/net/httpclient",
-    "apps/net/httpserver",
-    "apps/net/udpserver",
-    "apps/task/parallel",
-    "apps/task/sleep",
-    "apps/task/yield",
-    "apps/task/priority",
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-    "crates/allocator",
-    "crates/arm_gic",
-    "crates/axerrno",
-    "crates/axfs_devfs",
-    "crates/axfs_ramfs",
-    "crates/axfs_vfs",
-    "crates/axio",
-    "crates/capability",
-    "crates/crate_interface",
-    "crates/driver_block",
-    "crates/driver_common",
-    "crates/driver_display",
-    "crates/driver_net",
-    "crates/driver_pci",
-    "crates/driver_virtio",
-    "crates/flatten_objects",
-    "crates/handler_table",
-    "crates/kernel_guard",
-    "crates/lazy_init",
-    "crates/linked_list",
-    "crates/memory_addr",
-    "crates/page_table",
-    "crates/page_table_entry",
-    "crates/percpu",
-    "crates/percpu_macros",
-    "crates/ratio",
-    "crates/scheduler",
-    "crates/slab_allocator",
-    "crates/spinlock",
-    "crates/timer_list",
-    "crates/tuple_for_each",
+[features]
+fs = []
+macro = ["axhal/macro"]
+default = ["macro", "fs"]
 
-    "modules/axalloc",
-    "modules/axconfig",
-    "modules/axdisplay",
-    "modules/axdriver",
-    "modules/axfs",
-    "modules/axhal",
-    "modules/axlog",
-    "modules/axnet",
-    "modules/axruntime",
-    "modules/axsync",
-    "modules/axtask",
-
-    "ulib/libax",
-]
+[dependencies]
+spinlock = { path = "../../crates/spinlock" }
+axtask = { path = "../axtask" }
+axalloc = { path = "../axalloc" }
+axio = { path = "../../crates/axio", features = ["alloc"] }
+axhal = { path = "../axhal" }
+axlog = { path = "../axlog" }
+axmem = { path = "../axmem" }
+axerrno = { path = "../../crates/axerrno" }
+axconfig = { path = "../axconfig" }
+axfs = { path = "../axfs" }
+#riscv = "0.10"
+riscv = { path = "../../extern_crates/riscv-0.10.1" }
+bitflags = "2.0"
+lazy_static = { version = "1.4", features = ["spin_no_std"] }
+#lazy_static = { path = "../../extern_crates/lazy_static-1.4.0" }
+#xmas-elf = "0.9.0"
+xmas-elf = { path = "../../extern_crates/xmas-elf-0.9.0" }
